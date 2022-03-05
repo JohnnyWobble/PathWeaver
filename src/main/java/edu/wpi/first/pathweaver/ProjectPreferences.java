@@ -103,7 +103,7 @@ public class ProjectPreferences {
 	}
 
 	private void setDefaults() {
-		values = new Values("FOOT", "Always Meters", 10.0, 60.0, 2.0, Game.INFINTE_RECHARGE_2020.getName(), null);
+		values = new Values("FOOT", "Always Meters", 10.0, 60.0, 2.0, 3.0, 3.0, Game.INFINTE_RECHARGE_2020.getName(), null);
 		updateValues();
 	}
 
@@ -240,6 +240,8 @@ public class ProjectPreferences {
 		private String exportUnit;
 		private final double maxVelocity;
 		private final double maxAcceleration;
+		private final double robotWidth;
+		private final double robotLength;
 		@SerializedName(value = "trackWidth", alternate = "wheelBase")
 		private final double trackWidth;
 		private String gameName;
@@ -257,13 +259,17 @@ public class ProjectPreferences {
 		 * @param trackWidth
 		 *            The width between the center of each tire of the drivebase.  Even better would be a calculated
 		 *            track width from robot characterization.
+         * @param robotWidth 
+		 * 			  The width of the robot
+         * @param robotLength 
+		 * 	          The length of the robot 
 		 * @param gameName
 		 *            The year/FRC game
 		 * @param outputDir
 		 *            The directory for the output files
 		 */
 		public Values(String lengthUnit, String exportUnit, double maxVelocity, double maxAcceleration,
-				double trackWidth, String gameName, String outputDir) {
+				double trackWidth, double robotWidth, double robotLength, String gameName, String outputDir) {
 			this.lengthUnit = lengthUnit;
 			this.exportUnit = exportUnit;
 			this.maxVelocity = maxVelocity;
@@ -271,6 +277,8 @@ public class ProjectPreferences {
 			this.trackWidth = trackWidth;
 			this.gameName = gameName;
 			this.outputDir = outputDir;
+			this.robotWidth = robotWidth;
+			this.robotLength = robotLength;
 		}
 
 		public Unit<Length> getLengthUnit() {
@@ -291,6 +299,14 @@ public class ProjectPreferences {
 
 		public double getTrackWidth() {
 			return trackWidth;
+		}
+
+		public double getRobotWidth() {
+		  return robotWidth;
+		}
+	
+		public double getRobotLength() {
+		  return robotLength;
 		}
 
 		public String getGameName() {
